@@ -1,0 +1,61 @@
+{
+    "name": "janklan/simple-date-time-for-doctrine",
+    "description": "Doctrine DBAL types for simple-date-time value objects",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["doctrine", "dbal", "date", "time", "database", "types"],
+    "require": {
+        "php": "~8.3",
+        "janklan/simple-date-time": "dev-main",
+        "doctrine/dbal": "~3.0|~4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~12.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpdoc-parser": "^2.3",
+        "phpmd/phpmd": "^2.15",
+        "brianium/paratest": "^7.15",
+        "roave/security-advisories": "dev-latest",
+        "rector/rector": "^2.2",
+        "ergebnis/composer-normalize": "^2.48",
+        "friendsofphp/php-cs-fixer": "^3.91"
+    },
+    "autoload": {
+        "psr-4": {
+            "JanKlan\\SimpleDateTimeForDoctrine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JanKlan\\SimpleDateTimeForDoctrine\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/janklan/simple-date-time"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "scripts": {
+        "cs": "vendor/bin/php-cs-fixer fix",
+        "phpstan": "vendor/bin/phpstan",
+        "preflight": [
+            "@cs",
+            "@phpstan",
+            "@test"
+        ],
+        "rector": [
+            "vendor/bin/rector",
+            "@cs"
+        ],
+        "test": "vendor/bin/paratest --no-coverage",
+        "testcc": "XDEBUG_MODE=coverage vendor/bin/paratest --coverage-html=./coverage",
+        "test:functional": "vendor/bin/paratest --no-coverage --group functional",
+        "test:unit": "vendor/bin/paratest --no-coverage --group unit"
+    }
+}
